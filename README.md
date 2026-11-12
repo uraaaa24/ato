@@ -14,22 +14,27 @@ The React Compiler is enabled on this template. See [this documentation](https:/
 Note: This will impact Vite dev & build performances.
 You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
 
-## Expanding the Oxlint configuration
+## Code quality
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```sh
+pnpm fmt        # Format files
+pnpm fmt:check  # Check formatting without writing
+pnpm lint       # Lint; warnings also fail
+pnpm lint:fix   # Apply automatic lint fixes
+pnpm build      # Type-check and build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Formatting is defined in `oxfmt.config.ts`: two spaces, 80 columns, single
+quotes, no semicolons, and sorted imports. Side-effect imports are not sorted.
+The lockfile and build output are excluded.
+
+`oxlint.config.ts` checks correctness, React Hooks, explicit `any`, non-null
+assertions, and cyclic imports. Use `type` declarations and separate type imports.
+Both named and default exports are allowed.
+Browser globals are scoped to `src`; tool configs use Node globals.
+
+These conventions follow the existing tabi-log and medication-tracker projects.
+Type-aware linting is not enabled; `pnpm build` runs the TypeScript checks.
+
+See the [Oxlint configuration documentation](https://oxc.rs/docs/guide/usage/linter/config)
+and [Oxfmt configuration documentation](https://oxc.rs/docs/guide/usage/formatter/config).
