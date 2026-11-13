@@ -11,5 +11,5 @@ export default defineConfig({
   arrowParens: 'always',
   sortImports: { sortSideEffects: false },
   sortPackageJson: false,
-  ignorePatterns: ['dist/**', 'pnpm-lock.yaml'],
+  ignorePatterns: ['**/dist/**', 'pnpm-lock.yaml'],
 })

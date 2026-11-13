@@ -3,7 +3,7 @@ import { defineConfig } from 'oxlint'
 export default defineConfig({
   plugins: ['typescript', 'react', 'oxc', 'import'],
   categories: { correctness: 'error' },
-  ignorePatterns: ['dist/**'],
+  ignorePatterns: ['**/dist/**'],
   options: {
     maxWarnings: 0,
     reportUnusedDisableDirectives: 'error',
@@ -33,12 +33,12 @@ export default defineConfig({
   },
   overrides: [
     {
-      files: ['src/**/*.{ts,tsx}'],
+      files: ['apps/web/src/**/*.{ts,tsx}'],
       env: { browser: true },
       rules: { 'no-console': ['error', { allow: ['warn', 'error'] }] },
     },
     {
-      files: ['*.config.{ts,mts}'],
+      files: ['**/*.config.{ts,mts}'],
       env: { node: true },
     },
   ],
