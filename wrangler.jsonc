@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ato",
+  "compatibility_date": "2026-11-13",
+  "assets": {
+    "directory": "./dist",
+  },
+  "routes": [{ "pattern": "ato.urarara.me", "custom_domain": true }],
+  "observability": {
+    "enabled": true,
+    "traces": { "enabled": true },
+  },
+}
