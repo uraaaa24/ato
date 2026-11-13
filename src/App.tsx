@@ -9,7 +9,7 @@ function App() {
   const { year, daysInYear, remainingDays, todayIndex } = getYearProgress(today)
 
   return (
-    <div className="flex flex-col min-h-screen max-w-4xl mx-auto py-12">
+    <div className="flex flex-col min-h-screen max-w-4xl mx-auto py-12 px-8">
       <div className="mb-16">
         <Header year={year} />
       </div>
@@ -23,7 +23,7 @@ function App() {
           </span>
         </div>
 
-        <div className="grid grid-cols-25 border-t border-l border-stone-800/25">
+        <div className="grid md:grid-cols-25 grid-cols-15 border-t border-l border-stone-800/25">
           {Array.from({ length: daysInYear }).map((_, i) => {
             const key = crypto.randomUUID()
 
