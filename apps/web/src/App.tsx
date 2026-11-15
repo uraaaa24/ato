@@ -1,8 +1,8 @@
+import { getYearProgress } from '@ato/core'
 import { useState } from 'react'
 
 import Dot from './components/dot'
 import Header from './components/header'
-import { getYearProgress } from './util/date'
 
 function App() {
   const [today] = useState(() => new Date())
